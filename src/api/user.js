@@ -1,24 +1,22 @@
-import request from '@/utils/request'
+import axios from 'axios';
 
-export function login(data) {
-  return request({
-    url: '/vue-element-admin/user/login',
-    method: 'post',
-    data
-  })
-}
+const apiClient = axios.create({
+  baseURL: 'https://api.example.com', // 替换为你的实际API地址
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+});
 
-export function getInfo(token) {
-  return request({
-    url: '/vue-element-admin/user/info',
-    method: 'get',
-    params: { token }
-  })
-}
-
-export function logout() {
-  return request({
-    url: '/vue-element-admin/user/logout',
-    method: 'post'
-  })
-}
+export default {
+  login(credentials) {
+    return apiClient.post('/login', credentials);
+  },
+  register(data) {
+    return apiClient.post('/register', data);
+  },
+  getUserProfile() {
+    return apiClient.get('/user/profile');
+  }
+};

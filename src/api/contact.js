@@ -10,10 +10,7 @@ const apiClient = axios.create({
 });
 
 export default {
-  getArticles() {
-    return apiClient.get('/articles');
-  },
-  getArticle(id) {
-    return apiClient.get(`/articles/${id}`);
+  submitContactForm(data) {
+    return apiClient.post('/contact', data);
   }
 };
